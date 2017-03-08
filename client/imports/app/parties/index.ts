@@ -5,6 +5,7 @@ import { UtdDetailsComponent } from './utd-details.component';
 import { PartiesListComponent } from './parties-list.component';
 import { PartyDetailsComponent } from './party-details.component';
 import {PartiesUploadComponent} from "./parties-upload.component";
+import {UtdsUploadComponent} from "./utds-upload.component";
 
 export const PARTIES_DECLARATIONS = [
   PartiesFormComponent,
@@ -13,5 +14,6 @@ export const PARTIES_DECLARATIONS = [
   PartiesUploadComponent,
   UtdsFormComponent,
   UtdsListComponent,
-  UtdDetailsComponent
+  UtdDetailsComponent,
+  UtdsUploadComponent
 ];
