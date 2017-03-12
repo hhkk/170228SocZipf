@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Utds } from '../../../../both/collections/utds.collection';
+import { Utds } from '../../../../../both/collections/utds.collection';
 import { InjectUser } from "angular2-meteor-accounts-ui";
 import template from './utds-form.component.html';
 import style from './utds-form.component.scss';
 
 @Component({
-  selector: 'utds-form',
+  selector: 'utds-formx',
   template,
   styles: [ style ]
 })
@@ -17,7 +17,7 @@ export class UtdsFormComponent implements OnInit {
   images: string[] = [];
 
   constructor(
-    private formBuilder: FormBuilder
+      private formBuilder: FormBuilder
   ) {}
 
   ngOnInit() {
@@ -39,29 +39,42 @@ export class UtdsFormComponent implements OnInit {
       return;
     }
 
+
+
     if (this.addForm.valid) {
-      //alert('pre save');
-      try {
-        Utds.insert({
-          name: this.addForm.value.name,
-          description: this.addForm.value.description,
-          location: {
-            name: this.addForm.value.location,
-            lat: this.newUtdPosition.lat,
-            lng: this.newUtdPosition.lng
-          },
-          images: this.images,
-          public: this.addForm.value.public,
-          owner: Meteor.userId()
-        });
-      } catch (err) {
-        console.log (err.stack);
-        console.log (err.toString());
-      }
-      //alert('post save');
+
+
+
+
+      let i;
+      for (i = 0; i < 1; i++) {
+        if (this.addForm.valid) {
+          //alert('pre save');
+          try {
+            Utds.insert({
+              name: this.addForm.value.name,
+              description: this.addForm.value.description,
+              location: {
+                name: this.addForm.value.location,
+                lat: this.newUtdPosition.lat,
+                lng: this.newUtdPosition.lng
+              },
+              images: this.images,
+              public: this.addForm.value.public,
+              owner: Meteor.userId()
+            });
+          } catch (err) {
+            console.log(err.stack);
+            console.log(err.toString());
+            alert('error in save');
+          }
+        }
+        //alert('post save');
+
+      } // for
 
       this.addForm.reset();
-    }
+  }
   }
 
   onImage(imageId: string) {

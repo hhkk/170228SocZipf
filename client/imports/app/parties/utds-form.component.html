@@ -1,37 +1,27 @@
 <div class="form-container">
   <div class="container-background">
     <div class="form-content">
+      <!--<div class="form-center">-->
+        <!--<h1>Your utd is missing?</h1>-->
+        <!--<h2>Add it now! ></h2>-->
+      <!--</div>-->
       <div class="form-center">
-        <h1>Your utd is missing?</h1>
-        <h2>Add it now! ></h2>
-      </div>
-      <div class="form-center">
-        <form *ngIf="user" [formGroup]="addHbkForm" (ngSubmit)="addUtd(); upload.reset();">
+        <form *ngIf="user" [formGroup]="addForm" (ngSubmit)="addUtd(); upload.reset();">
           <div style="display: table-row">
             <div class="form-inputs">
               <md-input dividerColor="accent" formControlName="name" placeholder="Utd name"></md-input>
-              <br/>
+              |
               <md-input dividerColor="accent" formControlName="description" placeholder="Description"></md-input>
-              <br/>
+              |
               <md-input dividerColor="accent" formControlName="location" placeholder="Location name"></md-input>
-              <br/>
-              <md-checkbox formControlName="public">Public utd?</md-checkbox>
-              <br/><br/>
-              <utds-upload #upload (onFile)="onImage($event)"></utds-upload>
+              |
+              <md-checkbox formControlName="public">Public utd NOT under obj?</md-checkbox>
+              |
               <button color="accent" md-raised-button type="submit">Add my utd!</button>
             </div>
-            <div class="form-extras">
-              <sebm-google-map class="new-utd-map"
-                               [latitude]="newUtdPosition.lat"
-                               [longitude]="newUtdPosition.lng"
-                               [zoom]="8"
-                               (mapClick)="mapClicked($event)">
-                <sebm-google-map-marker
-                  [latitude]="newUtdPosition.lat"
-                  [longitude]="newUtdPosition.lng">
-                </sebm-google-map-marker>
-              </sebm-google-map>
-            </div>
+            <!--<div class="form-extras">-->
+                <!--dfgdfg-->
+            <!--</div>-->
           </div>
         </form>
         <div *ngIf="!user">

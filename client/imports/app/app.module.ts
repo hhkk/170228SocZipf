@@ -17,6 +17,7 @@ import { MOBILE_DECLARATIONS } from "./mobile/index";
 import { AppMobileComponent } from "./mobile/app.component.mobile";
 import { IonicModule, IonicApp } from "ionic-angular";
 import { PartiesListMobileComponent } from "./mobile/parties-list.component.mobile";
+import { UtdsListMobileComponent } from "./mobile/utds-list.component.mobile";
 
 let moduleDefinition;
 

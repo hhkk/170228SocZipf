@@ -34,7 +34,7 @@ export class GetEmailFromUserBoth {
         //     Parties.insert(Object.assign({}, {hhkk: 'hhkkjj'}, {owner: Meteor.userId()}));
         //     alert('post addparty');
         //     //
-        //     //   // XXX will be replaced by this.addHbkForm.reset() in RC5+
+        //     //   // XXX will be replaced by this.addForm.reset() in RC5+
         //     // } else {
         //     //   alert('Please log in to add a user');
         //     // }

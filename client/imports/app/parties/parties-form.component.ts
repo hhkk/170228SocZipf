@@ -39,19 +39,39 @@ export class PartiesFormComponent implements OnInit {
       return;
     }
 
+
+
     if (this.addForm.valid) {
-      Parties.insert({
-        name: this.addForm.value.name,
-        description: this.addForm.value.description,
-        location: {
-          name: this.addForm.value.location,
-          lat: this.newPartyPosition.lat,
-          lng: this.newPartyPosition.lng
-        },
-        images: this.images,
-        public: this.addForm.value.public,
-        owner: Meteor.userId()
-      });
+
+
+
+
+      let i;
+      for (i = 0; i < 1; i++) {
+        if (this.addForm.valid) {
+          //alert('pre save');
+          try {
+            Parties.insert({
+              name: this.addForm.value.name,
+              description: this.addForm.value.description,
+              location: {
+                name: this.addForm.value.location,
+                lat: this.newPartyPosition.lat,
+                lng: this.newPartyPosition.lng
+              },
+              images: this.images,
+              public: this.addForm.value.public,
+              owner: Meteor.userId()
+            });
+          } catch (err) {
+            console.log(err.stack);
+            console.log(err.toString());
+            alert('error in save');
+          }
+        }
+        //alert('post save');
+
+      } // for
 
       this.addForm.reset();
     }
