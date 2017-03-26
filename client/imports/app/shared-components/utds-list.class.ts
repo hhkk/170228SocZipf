@@ -3,7 +3,7 @@ import {Observable, Subscription, Subject} from "rxjs";
 import {Utd} from "../../../../both/models/utd.model";
 import {PaginationService} from "ng2-pagination";
 import {MeteorObservable} from "meteor-rxjs";
-import {Utds} from "../../../../both/collections/utds.collection";
+import {Utds2} from "../../../../both/collections/utds2.collection";
 import {Counts} from "meteor/tmeasday:publish-counts";
 import {InjectUser} from "angular2-meteor-accounts-ui";
 
@@ -56,7 +56,8 @@ export class UtdsList implements OnInit, OnDestroy {
       }
 
       this.utdsSub = MeteorObservable.subscribe('utds', options, location).subscribe(() => {
-        this.utds = Utds.find({}, {
+        alert(' ========================== running utds sub');
+        this.utds = Utds2.find({}, {
           sort: {
             name: nameOrder
           }
@@ -83,7 +84,7 @@ export class UtdsList implements OnInit, OnDestroy {
   }
 
   removeUtd(utd: Utd): void {
-    Utds.remove(utd._id);
+    Utds2.remove(utd._id);
   }
 
   search(value: string): void {

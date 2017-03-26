@@ -37,7 +37,8 @@ if (Meteor.isCordova) {
       IonicApp
     ],
     entryComponents: [
-      PartiesListMobileComponent
+      PartiesListMobileComponent,
+      UtdsListMobileComponent
     ]
   }
 }

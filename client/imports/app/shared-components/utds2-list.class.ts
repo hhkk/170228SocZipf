@@ -1,9 +1,9 @@
 import {OnDestroy, OnInit} from "@angular/core";
 import {Observable, Subscription, Subject} from "rxjs";
-import {Party} from "../../../../both/models/party.model";
+import {Utd2} from "../../../../both/models/utd.model";
 import {PaginationService} from "ng2-pagination";
 import {MeteorObservable} from "meteor-rxjs";
-import {Parties} from "../../../../both/collections/parties.collection";
+import {Utds2} from "../../../../both/collections/utds2.collection";
 import {Counts} from "meteor/tmeasday:publish-counts";
 import {InjectUser} from "angular2-meteor-accounts-ui";
 
@@ -17,14 +17,14 @@ interface Options extends Pagination {
 }
 
 @InjectUser('user')
-export class PartiesList implements OnInit, OnDestroy {
-  parties: Observable<Party[]>;
-  partiesSub: Subscription;
+export class Utds2List implements OnInit, OnDestroy {
+  utds: Observable<Utd[]>;
+  utdsSub: Subscription;
   pageSize: Subject<number> = new Subject<number>();
   curPage: Subject<number> = new Subject<number>();
   nameOrder: Subject<number> = new Subject<number>();
   optionsSub: Subscription;
-  partiesSize: number = 0;
+  utdsSize: number = 0;
   autorunSub: Subscription;
   location: Subject<string> = new Subject<string>();
   user: Meteor.User;
@@ -38,10 +38,10 @@ export class PartiesList implements OnInit, OnDestroy {
     this.imagesSubs = MeteorObservable.subscribe('images').subscribe();
 
     this.optionsSub = Observable.combineLatest(
-      this.pageSize,
-      this.curPage,
-      this.nameOrder,
-      this.location
+        this.pageSize,
+        this.curPage,
+        this.nameOrder,
+        this.location
     ).subscribe(([pageSize, curPage, nameOrder, location]) => {
       const options: Options = {
         limit: pageSize as number,
@@ -51,13 +51,13 @@ export class PartiesList implements OnInit, OnDestroy {
 
       this.paginationService.setCurrentPage(this.paginationService.defaultId, curPage as number);
 
-      if (this.partiesSub) {
-        this.partiesSub.unsubscribe();
+      if (this.utdsSub) {
+        this.utdsSub.unsubscribe();
       }
 
-      this.partiesSub = MeteorObservable.subscribe('partiesxx', options, location).subscribe(() => {
-        console.log(' ========================== running parties sub');
-        this.parties = Parties.find({}, {
+      this.utdsSub = MeteorObservable.subscribe('utds2', options, location).subscribe(() => {
+        console.log(' ========================== running utds2 sub');
+        this.utds = Utds2.find({}, {
           sort: {
             name: nameOrder
           }
@@ -69,7 +69,7 @@ export class PartiesList implements OnInit, OnDestroy {
       id: this.paginationService.defaultId,
       itemsPerPage: 10,
       currentPage: 1,
-      totalItems: this.partiesSize
+      totalItems: this.utdsSize
     });
 
     this.pageSize.next(10);
@@ -78,13 +78,13 @@ export class PartiesList implements OnInit, OnDestroy {
     this.location.next('');
 
     this.autorunSub = MeteorObservable.autorun().subscribe(() => {
-      this.partiesSize = Counts.get('numberOfParties');
-      this.paginationService.setTotalItems(this.paginationService.defaultId, this.partiesSize);
+      this.utdsSize = Counts.get('numberOfUtds');
+      this.paginationService.setTotalItems(this.paginationService.defaultId, this.utdsSize);
     });
   }
 
-  removeParty(party: Party): void {
-    Parties.remove(party._id);
+  removeUtd(utd: Utd): void {
+    Utds2.remove(utd._id);
   }
 
   search(value: string): void {
@@ -100,12 +100,12 @@ export class PartiesList implements OnInit, OnDestroy {
     this.nameOrder.next(parseInt(nameOrder));
   }
 
-  isOwner(party: Party): boolean {
-    return this.user && this.user._id === party.owner;
+  isOwner(utd: Utd): boolean {
+    return this.user && this.user._id === utd.owner;
   }
 
   ngOnDestroy() {
-    this.partiesSub.unsubscribe();
+    this.utdsSub.unsubscribe();
     this.optionsSub.unsubscribe();
     this.autorunSub.unsubscribe();
     this.imagesSubs.unsubscribe();

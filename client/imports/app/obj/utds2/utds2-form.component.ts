@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Utds } from '../../../../../both/collections/utds.collection';
+import { Utds2 } from '../../../../../both/collections/utds2.collection';
 import { InjectUser } from "angular2-meteor-accounts-ui";
-import template from './utds-form.component.html';
-import style from './utds-form.component.scss';
+import template from './utds2-form.component.html';
+import style from './utds2-form.component.scss';
 
 @Component({
-  selector: 'utds-formx27',
+  selector: 'utds-formx26',
   template,
   styles: [ style ]
 })
 @InjectUser("user")
-export class UtdsFormComponent implements OnInit {
+export class Utds2FormComponent implements OnInit {
   addForm: FormGroup;
   newUtdPosition: {lat:number, lng: number} = {lat: 37.4292, lng: -122.1381};
   images: string[] = [];
@@ -34,24 +34,19 @@ export class UtdsFormComponent implements OnInit {
   }
 
   addUtd(): void {
+    alert ('in utds2 utds-form.component.ts');
     if (!Meteor.userId()) {
       alert('Please log in to add a utd');
       return;
     }
 
-
-
     if (this.addForm.valid) {
-
-
-
-
       let i;
       for (i = 0; i < 1; i++) {
         if (this.addForm.valid) {
-          //alert('pre save');
+          alert('pre save in obj utds2');
           try {
-            Utds.insert({
+            Utds2.insert({
               name: this.addForm.value.name + '.' + i,
               description: this.addForm.value.description,
               location: {

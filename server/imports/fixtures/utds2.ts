@@ -1,9 +1,9 @@
 import { Utds2 } from '../../../both/collections/utds2.collection';
-import { Utd } from '../../../both/models/utd.model';
+import { Utd2 } from '../../../both/models/utd2.model';
 
 export function loadUtds() {
   if (Utds2.find().cursor.count() === 0) {
-    const utds: Utd[] = [{
+    const utds2: Utd2[] = [{
       name: 'Dubstep-Free Zone',
       description: 'Can we please just for an evening not listen to dubstep.',
       location: {
@@ -26,6 +26,6 @@ export function loadUtds() {
       public: false
     }];
 
-    utds.forEach((utd: Utd) => Utds2.insert(utd));
+    utds2.forEach((utd2: Utd2) => Utds2.insert(utd2));
   }
 }

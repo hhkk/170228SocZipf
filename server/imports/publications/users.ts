@@ -6,7 +6,7 @@ Meteor.publish('uninvited', function (partyId: string) {
   const party = Parties.findOne(partyId);
 
   if (!party) {
-    throw new Meteor.Error('404', 'No such party!');
+    throw new Meteor.Error('404', 'No such partyId:' + partyId);
   }
 
   return Meteor.users.find({
@@ -16,3 +16,4 @@ Meteor.publish('uninvited', function (partyId: string) {
     }
   });
 });
+

@@ -7,7 +7,7 @@ interface Options {
   [key: string]: any;
 }
 
-Meteor.publish('parties', function(options: Options, location?: string) {
+Meteor.publish('partiesxx', function(options: Options, location?: string) {
   const selector = buildQuery.call(this, null, location);
 
   Counts.publish(this, 'numberOfParties', Parties.collection.find(selector), { noReady: true });

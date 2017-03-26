@@ -9,13 +9,15 @@ import { MouseEvent } from "angular2-google-maps/core";
 
 import 'rxjs/add/operator/map';
 
-import { Utds } from '../../../../both/collections/utds.collection';
-import { Utd } from '../../../../both/models/utd.model';
-import { Users } from '../../../../both/collections/users.collection';
-import { User } from '../../../../both/models/user.model';
+import { Utds2 } from '../../../../../both/collections/utds2.collection';
+import { Utd2 } from '../../../../../both/models/utd2.model';
+import { Users } from '../../../../../both/collections/users.collection';
+import { User } from '../../../../../both/models/user.model';
 
-import template from './utd-details.component.html';
-import style from './utd-details.component.scss';
+import template from './utd2-details.component.html';
+import style from './utd2-details.component.scss';
+
+console.log ('in client utd-details.component.ts');
 
 @Component({
   selector: 'utd-details',
@@ -23,10 +25,10 @@ import style from './utd-details.component.scss';
   styles: [ style ]
 })
 @InjectUser('user')
-export class UtdDetailsComponent implements OnInit, OnDestroy {
+export class Utd2DetailsComponent implements OnInit, OnDestroy {
   utdId: string;
   paramsSub: Subscription;
-  utd: Utd;
+  utd: Utd2;
   utdSub: Subscription;
   users: Observable<User>;
   uninvitedSub: Subscription;
@@ -49,24 +51,24 @@ export class UtdDetailsComponent implements OnInit, OnDestroy {
           this.utdSub.unsubscribe();
         }
 
-        this.utdSub = MeteorObservable.subscribe('utd', this.utdId).subscribe(() => {
+        this.utdSub = MeteorObservable.subscribe('utd2', this.utdId).subscribe(() => {
           MeteorObservable.autorun().subscribe(() => {
-            this.utd = Utds.findOne(this.utdId);
+            this.utd = Utds2.findOne(this.utdId);
             this.getUsers(this.utd);
           });
         });
 
-        if (this.uninvitedSub) {
-          this.uninvitedSub.unsubscribe();
-        }
+        // if (this.uninvitedSub) {
+        //   this.uninvitedSub.unsubscribe();
+        // }
 
-        this.uninvitedSub = MeteorObservable.subscribe('uninvited', this.utdId).subscribe(() => {
-          this.getUsers(this.utd);
-        });
+        // this.uninvitedSub = MeteorObservable.subscribe('uninvited', this.utdId).subscribe(() => {
+        //   this.getUsers(this.utd);
+        // });
       });
   }
 
-  getUsers(utd: Utd) {
+  getUsers(utd: Utd2) {
     if (utd) {
       this.users = Users.find({
         _id: {
@@ -83,7 +85,7 @@ export class UtdDetailsComponent implements OnInit, OnDestroy {
       return;
     }
     
-    Utds.update(this.utd._id, {
+    Utds2.update(this.utd._id, {
       $set: {
         name: this.utd.name,
         description: this.utd.description,

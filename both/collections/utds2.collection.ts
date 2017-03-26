@@ -1,16 +1,16 @@
 import { MongoObservable } from 'meteor-rxjs';
 import { Meteor } from 'meteor/meteor';
 
-import { Party } from '../models/party.model';
+import { Utd2 }  from '../models/utd2.model';
 
-export const Parties = new MongoObservable.Collection<Party>('partiesxx');
-
+export const  Utds2 = new MongoObservable.Collection<Utd2>('utds2');
+console.log ('in utds2.collection.ts');
 
 function loggedIn() {
   return !!Meteor.user();
 }
 
-Parties.allow({
+Utds2.allow({
   insert: loggedIn,
   update: loggedIn,
   remove: loggedIn

@@ -9,7 +9,7 @@ import { MouseEvent } from "angular2-google-maps/core";
 
 import 'rxjs/add/operator/map';
 
-import { Utds } from '../../../../../both/collections/utds.collection';
+import { Utds2 } from '../../../../../both/collections/utds2.collection';
 import { Utd } from '../../../../../both/models/utd.model';
 import { Users } from '../../../../../both/collections/users.collection';
 import { User } from '../../../../../both/models/user.model';
@@ -53,7 +53,7 @@ export class UtdDetailsComponent implements OnInit, OnDestroy {
 
         this.utdSub = MeteorObservable.subscribe('utd', this.utdId).subscribe(() => {
           MeteorObservable.autorun().subscribe(() => {
-            this.utd = Utds.findOne(this.utdId);
+            this.utd = Utds2.findOne(this.utdId);
             this.getUsers(this.utd);
           });
         });
@@ -85,7 +85,7 @@ export class UtdDetailsComponent implements OnInit, OnDestroy {
       return;
     }
     
-    Utds.update(this.utd._id, {
+    Utds2.update(this.utd._id, {
       $set: {
         name: this.utd.name,
         description: this.utd.description,

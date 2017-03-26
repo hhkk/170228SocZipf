@@ -3,7 +3,7 @@ import { PaginationService } from 'ng2-pagination';
 import { UtdsList } from "../../shared-components/utds-list.class";
 
 //import template from './utds-list.component.html';
-import template from './utds-list2.component.html';
+import template from './utds-list.component.html';
 import style from './utds-list.component.scss';
 
 @Component({
