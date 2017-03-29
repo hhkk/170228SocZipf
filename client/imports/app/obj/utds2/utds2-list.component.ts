@@ -7,7 +7,7 @@ import template from './utds2-list.component.html';
 import style from './utds2-list.component.scss';
 
 @Component({
-  selector: 'utds-listxxx',
+  selector: 'utdsxx2-listxxx',
   template,
   styles: [ style ]
 })

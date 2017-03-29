@@ -56,7 +56,7 @@ export class UtdsList implements OnInit, OnDestroy {
       }
 
       this.utdsSub = MeteorObservable.subscribe('utds', options, location).subscribe(() => {
-        alert(' ========================== running utds sub');
+        alert(' ========================== running utdsxx2 sub');
         this.utds = Utds2.find({}, {
           sort: {
             name: nameOrder

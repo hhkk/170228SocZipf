@@ -18,7 +18,7 @@ interface Options extends Pagination {
 
 @InjectUser('user')
 export class Utds2List implements OnInit, OnDestroy {
-  utds: Observable<Utd[]>;
+  utdsxx2: Observable<Utd[]>;
   utdsSub: Subscription;
   pageSize: Subject<number> = new Subject<number>();
   curPage: Subject<number> = new Subject<number>();
@@ -55,9 +55,9 @@ export class Utds2List implements OnInit, OnDestroy {
         this.utdsSub.unsubscribe();
       }
 
-      this.utdsSub = MeteorObservable.subscribe('utds2', options, location).subscribe(() => {
+      this.utdsSub = MeteorObservable.subscribe('utds3', options, location).subscribe(() => {
         console.log(' ========================== running utds2 sub');
-        this.utds = Utds2.find({}, {
+        this.utdsxx2 = Utds2.find({}, {
           sort: {
             name: nameOrder
           }

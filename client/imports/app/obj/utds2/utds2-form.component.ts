@@ -34,7 +34,7 @@ export class Utds2FormComponent implements OnInit {
   }
 
   addUtd(): void {
-    alert ('in utds2 utds-form.component.ts');
+    alert ('in utds2 utdsxx2-form.component.ts');
     if (!Meteor.userId()) {
       alert('Please log in to add a utd');
       return;

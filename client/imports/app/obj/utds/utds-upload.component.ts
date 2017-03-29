@@ -10,7 +10,7 @@ import {Thumb} from "../../../../../both/models/image.model";
 import {Thumbs} from "../../../../../both/collections/images.collection";
 
 @Component({
-  selector: 'utds-upload',
+  selector: 'utdsxx2-upload',
   template,
   styles: [ style ]
 })

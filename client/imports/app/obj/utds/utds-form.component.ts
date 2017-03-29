@@ -6,7 +6,7 @@ import template from './utds-form.component.html';
 import style from './utds-form.component.scss';
 
 @Component({
-  selector: 'utds-formx27',
+  selector: 'utdsxx2-formx27',
   template,
   styles: [ style ]
 })

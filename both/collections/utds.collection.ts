@@ -3,8 +3,8 @@ import { Meteor } from 'meteor/meteor';
 
 import { Utd } from '../models/utd.model';
 
-export const Utds = new MongoObservable.Collection<Utd>('utds');
-console.log ('in utds.collection.ts');
+export const Utds = new MongoObservable.Collection<Utd>('utdsxx2');
+console.log ('in utdsxx2.collection.ts');
 
 function loggedIn() {
   return !!Meteor.user();

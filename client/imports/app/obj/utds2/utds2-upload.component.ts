@@ -1,7 +1,7 @@
 import {Component, OnInit, EventEmitter, Output} from '@angular/core';
 
-import template from './utds-upload.component.html';
-import style from './utds-upload.component.scss';
+import template from './utdsxx2-upload.component.html';
+import style from './utdsxx2-upload.component.scss';
 
 import { upload } from '../../../../../both/methods/images.methods';
 import {Subject, Subscription, Observable} from "rxjs";
@@ -10,7 +10,7 @@ import {Thumb} from "../../../../../both/models/image.model";
 import {Thumbs} from "../../../../../both/collections/images.collection";
 
 @Component({
-  selector: 'utds-upload',
+  selector: 'utdsxx2-upload',
   template,
   styles: [ style ]
 })
