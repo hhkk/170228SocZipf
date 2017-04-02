@@ -1,8 +1,8 @@
-import { Parties } from '../../../both/collections/parties.collection';
+import { Utd2s } from '../../../both/collections/parties.collection';
 import { Party } from '../../../both/models/party.model';
 
 export function loadParties() {
-  if (Parties.find().cursor.count() === 0) {
+  if (Utd2s.find().cursor.count() === 0) {
     const parties: Party[] = [{
       name: 'Dubstep-Free Zone',
       description: 'Can we please just for an evening not listen to dubstep.',
@@ -26,6 +26,6 @@ export function loadParties() {
       public: false
     }];
 
-    parties.forEach((party: Party) => Parties.insert(party));
+    parties.forEach((party: Party) => Utd2s.insert(party));
   }
 }

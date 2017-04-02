@@ -17,7 +17,7 @@ import { User } from '../../../../../both/models/user.model';
 import template from './utd2-details.component.html';
 import style from './utd2-details.component.scss';
 
-console.log ('in client utd-details.component.ts');
+console.log ('in client utd2-details.component.ts');
 
 @Component({
   selector: 'utd-details',
@@ -51,20 +51,21 @@ export class Utd2DetailsComponent implements OnInit, OnDestroy {
           this.utdSub.unsubscribe();
         }
 
-        this.utdSub = MeteorObservable.subscribe('utd2', this.utdId).subscribe(() => {
+        this.utdSub = MeteorObservable.subscribe('utd2pub', this.utdId).subscribe(() => {
+          console.log('in subscribe utd2pub');
           MeteorObservable.autorun().subscribe(() => {
             this.utd = Utds2.findOne(this.utdId);
             this.getUsers(this.utd);
           });
         });
 
-        // if (this.uninvitedSub) {
-        //   this.uninvitedSub.unsubscribe();
-        // }
+         if (this.uninvitedSub) {
+           this.uninvitedSub.unsubscribe();
+         }
 
-        // this.uninvitedSub = MeteorObservable.subscribe('uninvited', this.utdId).subscribe(() => {
-        //   this.getUsers(this.utd);
-        // });
+         this.uninvitedSub = MeteorObservable.subscribe('uninvitedUtd2', this.utdId).subscribe(() => {
+           this.getUsers(this.utd);
+         });
       });
   }
 
@@ -95,17 +96,17 @@ export class Utd2DetailsComponent implements OnInit, OnDestroy {
     });
   }
 
-  invite(user: Meteor.User) {
-    MeteorObservable.call('invite', this.utd._id, user._id).subscribe(() => {
-      alert('User successfully invited.');
+  inviteUtd(user: Meteor.User) {
+    MeteorObservable.call('inviteUtd', this.utd._id, user._id).subscribe(() => {
+      alert('User successfully invited to this utd2.');
     }, (error) => {
       alert(`Failed to invite due to ${error}`);
     });
   }
 
-  reply(rsvp: string) {
-    MeteorObservable.call('reply', this.utd._id, rsvp).subscribe(() => {
-      alert('You successfully replied.');
+  replyUtd(rsvp: string) {
+    MeteorObservable.call('replyUtd', this.utd._id, rsvp).subscribe(() => {
+      alert('You successfully replied to this utd2.');
     }, (error) => {
       alert(`Failed to reply due to ${error}`);
     });
@@ -144,8 +145,12 @@ export class Utd2DetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    //alert('exiting 1 utd2-details.component.ts');
     this.paramsSub.unsubscribe();
+    //alert('exiting 2 utd2-details.component.ts');
     this.utdSub.unsubscribe();
+    //alert('exiting 3 utd2-details.component.ts');
     this.uninvitedSub.unsubscribe();
+    //alert('exiting 4 utd2-details.component.ts');
   }
 }

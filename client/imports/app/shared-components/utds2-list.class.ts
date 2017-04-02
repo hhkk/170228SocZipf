@@ -1,6 +1,6 @@
 import {OnDestroy, OnInit} from "@angular/core";
 import {Observable, Subscription, Subject} from "rxjs";
-import {Utd2} from "../../../../both/models/utd.model";
+import {Utd2} from "../../../../both/models/utd2.model";
 import {PaginationService} from "ng2-pagination";
 import {MeteorObservable} from "meteor-rxjs";
 import {Utds2} from "../../../../both/collections/utds2.collection";
@@ -18,7 +18,7 @@ interface Options extends Pagination {
 
 @InjectUser('user')
 export class Utds2List implements OnInit, OnDestroy {
-  utdsxx2: Observable<Utd[]>;
+  utdsxx2: Observable<Utd2[]>;
   utdsSub: Subscription;
   pageSize: Subject<number> = new Subject<number>();
   curPage: Subject<number> = new Subject<number>();
@@ -83,7 +83,7 @@ export class Utds2List implements OnInit, OnDestroy {
     });
   }
 
-  removeUtd(utd: Utd): void {
+  removeUtd(utd: Utd2): void {
     Utds2.remove(utd._id);
   }
 
@@ -100,7 +100,7 @@ export class Utds2List implements OnInit, OnDestroy {
     this.nameOrder.next(parseInt(nameOrder));
   }
 
-  isOwner(utd: Utd): boolean {
+  isOwner(utd: Utd2): boolean {
     return this.user && this.user._id === utd.owner;
   }
 

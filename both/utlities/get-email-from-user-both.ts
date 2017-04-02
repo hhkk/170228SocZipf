@@ -31,7 +31,7 @@ export class GetEmailFromUserBoth {
         //     alert('in addparty');
         //
         //     // if (Meteor.userId()) {
-        //     Parties.insert(Object.assign({}, {hhkk: 'hhkkjj'}, {owner: Meteor.userId()}));
+        //     Utd2s.insert(Object.assign({}, {hhkk: 'hhkkjj'}, {owner: Meteor.userId()}));
         //     alert('post addparty');
         //     //
         //     //   // XXX will be replaced by this.addForm.reset() in RC5+

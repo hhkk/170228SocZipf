@@ -1,4 +1,4 @@
-import {Parties} from "../collections/parties.collection";
+import {Utd2s} from "../collections/parties.collection";
 import {Meteor} from 'meteor/meteor';
 import {Users} from "../collections/users.collection";
 
@@ -7,7 +7,7 @@ export class BothUtilGetMongoCollectionIterate {
     public static testGetParties() {
 
         {
-            let x = Parties.find();
+            let x = Utd2s.find();
 
             // while(this.parties.hasNext()) {
             //   item = this.parties.next();

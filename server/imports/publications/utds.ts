@@ -8,6 +8,7 @@ interface Options {
 }
 
 Meteor.publish('utdsxx2', function(options: Options, location?: string) {
+  console.log('======== in publish(utdsxx2)');
   const selector = buildQuery.call(this, null, location);
 
   Counts.publish(this, 'numberOfUtds', Utds.collection.find(selector), { noReady: true });
@@ -16,6 +17,7 @@ Meteor.publish('utdsxx2', function(options: Options, location?: string) {
 });
 
 Meteor.publish('utd', function(utdId: string) {
+  alert('in publish(utd)');
   return Utds.find(buildQuery.call(this, utdId));
 });
 

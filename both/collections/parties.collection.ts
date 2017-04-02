@@ -3,14 +3,14 @@ import { Meteor } from 'meteor/meteor';
 
 import { Party } from '../models/party.model';
 
-export const Parties = new MongoObservable.Collection<Party>('partiesxx');
+export const Utd2s = new MongoObservable.Collection<Party>('partiesxx');
 
 
 function loggedIn() {
   return !!Meteor.user();
 }
 
-Parties.allow({
+Utd2s.allow({
   insert: loggedIn,
   update: loggedIn,
   remove: loggedIn
