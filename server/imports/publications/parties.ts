@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Counts } from 'meteor/tmeasday:publish-counts';
 
-import { Utd2s } from '../../../both/collections/parties.collection';
+import { Parties } from '../../../both/collections/parties.collection';
 
 interface Options {
   [key: string]: any;
@@ -10,13 +10,13 @@ interface Options {
 Meteor.publish('partiesxx', function(options: Options, location?: string) {
   const selector = buildQuery.call(this, null, location);
 
-  Counts.publish(this, 'numberOfParties', Utd2s.collection.find(selector), { noReady: true });
+  Counts.publish(this, 'numberOfParties', Parties.collection.find(selector), { noReady: true });
 
-  return Utd2s.find(selector, options);
+  return Parties.find(selector, options);
 });
 
 Meteor.publish('party', function(partyId: string) {
-  return Utd2s.find(buildQuery.call(this, partyId));
+  return Parties.find(buildQuery.call(this, partyId));
 });
 
 

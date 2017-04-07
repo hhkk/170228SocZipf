@@ -3,7 +3,7 @@ import {Observable, Subscription, Subject} from "rxjs";
 import {Party} from "../../../../both/models/party.model";
 import {PaginationService} from "ng2-pagination";
 import {MeteorObservable} from "meteor-rxjs";
-import {Utd2s} from "../../../../both/collections/parties.collection";
+import {Parties} from "../../../../both/collections/parties.collection";
 import {Counts} from "meteor/tmeasday:publish-counts";
 import {InjectUser} from "angular2-meteor-accounts-ui";
 
@@ -57,7 +57,7 @@ export class PartiesList implements OnInit, OnDestroy {
 
       this.partiesSub = MeteorObservable.subscribe('partiesxx', options, location).subscribe(() => {
         console.log(' ========================== running parties sub');
-        this.parties = Utd2s.find({}, {
+        this.parties = Parties.find({}, {
           sort: {
             name: nameOrder
           }
@@ -84,7 +84,7 @@ export class PartiesList implements OnInit, OnDestroy {
   }
 
   removeParty(party: Party): void {
-    Utd2s.remove(party._id);
+    Parties.remove(party._id);
   }
 
   search(value: string): void {

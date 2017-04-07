@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Utd2s } from '../../../../both/collections/parties.collection';
+import { Parties} from '../../../../both/collections/parties.collection';
 import { InjectUser } from "angular2-meteor-accounts-ui";
 import template from './parties-form.component.html';
 import style from './parties-form.component.scss';
@@ -51,7 +51,7 @@ export class PartiesFormComponent implements OnInit {
         if (this.addForm.valid) {
           //alert('pre save');
           try {
-            Utd2s.insert({
+            Parties.insert({
               name: this.addForm.value.name,
               description: this.addForm.value.description,
               location: {

@@ -1,4 +1,4 @@
-import {Utd2s} from '../collections/parties.collection';
+import {Parties} from '../collections/parties.collection';
 import {Email} from 'meteor/email';
 import {check} from 'meteor/check';
 import {Meteor} from 'meteor/meteor';
@@ -15,7 +15,7 @@ Meteor.methods({
     check(partyId, String);
     check(userId, String);
 
-    let party = Utd2s.collection.findOne(partyId);
+    let party = Parties.collection.findOne(partyId);
 
     if (!party)
       throw new Meteor.Error('404', 'No such party!');
@@ -27,7 +27,7 @@ Meteor.methods({
       throw new Meteor.Error('403', 'No permissions!');
 
     if (userId !== party.owner && (party.invited || []).indexOf(userId) == -1) {
-      Utd2s.collection.update(partyId, {$addToSet: {invited: userId}});
+      Parties.collection.update(partyId, {$addToSet: {invited: userId}});
 
       let from = getContactEmail(Meteor.users.findOne(this.userId));
       let to = getContactEmail(Meteor.users.findOne(userId));
@@ -54,7 +54,7 @@ Meteor.methods({
     if (['yes', 'no', 'maybe'].indexOf(rsvp) === -1)
       throw new Meteor.Error('400', 'Invalid RSVP');
 
-    let party = Utd2s.findOne({ _id: partyId });
+    let party = Parties.findOne({ _id: partyId });
 
     if (!party)
       throw new Meteor.Error('404', 'No such party');
@@ -71,7 +71,7 @@ Meteor.methods({
       // update existing rsvp entry
       if (Meteor.isServer) {
         // update the appropriate rsvp entry with $
-        Utd2s.update(
+        Parties.update(
           { _id: partyId, 'rsvps.userId': this.userId },
           { $set: { 'rsvps.$.response': rsvp } });
       } else {
@@ -81,11 +81,11 @@ Meteor.methods({
         let modifier = { $set: {} };
         modifier.$set['rsvps.' + rsvpIndex + '.response'] = rsvp;
 
-        Utd2s.update(partyId, modifier);
+        Parties.update(partyId, modifier);
       }
     } else {
       // add new rsvp entry
-      Utd2s.update(partyId,
+      Parties.update(partyId,
         { $push: { rsvps: { userId: this.userId, response: rsvp } } });
     }
   }

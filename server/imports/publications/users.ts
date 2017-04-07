@@ -1,10 +1,10 @@
 import { Meteor } from 'meteor/meteor';
 
-import { Utd2s } from '../../../both/collections/parties.collection';
+import { Parties } from '../../../both/collections/parties.collection';
 import { Utds2 } from '../../../both/collections/utds2.collection';
 
 Meteor.publish('uninvited', function (partyId: string) {
-  const party = Utd2s.findOne(partyId);
+  const party = Parties.findOne(partyId);
 
   if (!party) {
     throw new Meteor.Error('404', 'No such partyId:' + partyId);

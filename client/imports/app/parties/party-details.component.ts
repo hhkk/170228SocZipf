@@ -9,7 +9,7 @@ import { MouseEvent } from "angular2-google-maps/core";
 
 import 'rxjs/add/operator/map';
 
-import { Utd2s } from '../../../../both/collections/parties.collection';
+import { Parties } from '../../../../both/collections/parties.collection';
 import { Party } from '../../../../both/models/party.model';
 import { Users } from '../../../../both/collections/users.collection';
 import { User } from '../../../../both/models/user.model';
@@ -51,7 +51,7 @@ export class PartyDetailsComponent implements OnInit, OnDestroy {
 
         this.partySub = MeteorObservable.subscribe('party', this.partyId).subscribe(() => {
           MeteorObservable.autorun().subscribe(() => {
-            this.party = Utd2s.findOne(this.partyId);
+            this.party = Parties.findOne(this.partyId);
             this.getUsers(this.party);
           });
         });
@@ -85,7 +85,7 @@ export class PartyDetailsComponent implements OnInit, OnDestroy {
       return;
     }
     
-    Utd2s.update(this.party._id, {
+    Parties.update(this.party._id, {
       $set: {
         name: this.party.name,
         description: this.party.description,
