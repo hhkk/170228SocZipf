@@ -12,6 +12,13 @@ function getContactEmail(user:Meteor.User):string {
 
 Meteor.methods({
   inviteUtd: function (utdId:string, userId:string) {
+
+    if (Meteor.isServer) {
+      console.log ('=============================in utd2s.methods.ts isserver');
+    } else {
+      //eval ("alert ('=============================in utd2s.methods.ts must be client');");
+      alert ('=============================in utd2s.methods.ts must be client');
+    }
     check(utdId, String);
     check(userId, String);
 
@@ -37,15 +44,15 @@ Meteor.methods({
           from: 'noreply@socially.com',
           to: to,
           replyTo: from || undefined,
-          subject: 'PARTY: ' + utd2.name,
+          subject: 'UTD: ' + utd2.name,
           text: `Hi, I just invited you to ${utd2.name} on Socially.
                         \n\nCome check it out: ${Meteor.absoluteUrl()}\n`
         });
       }
     }
   },
-  replyUtd: function(partyId: string, rsvp: string) {
-    check(partyId, String);
+  replyUtd: function(utdId: string, rsvp: string) {
+    check(utdId, String);
     check(rsvp, String);
 
     if (!this.userId)
@@ -54,25 +61,25 @@ Meteor.methods({
     if (['yes', 'no', 'maybe'].indexOf(rsvp) === -1)
       throw new Meteor.Error('400', 'Invalid RSVP');
 
-    let party = Utds2.findOne({ _id: partyId });
+    let utd = Utds2.findOne({ _id: utdId });
 
-    if (!party)
-      throw new Meteor.Error('404', 'No such party');
+    if (!utd)
+      throw new Meteor.Error('404', 'No such utd');
 
-    if (party.owner === this.userId)
+    if (utd.owner === this.userId)
       throw new Meteor.Error('500', 'You are the owner!');
 
-    if (!party.public && (!party.invited || party.invited.indexOf(this.userId) == -1))
-      throw new Meteor.Error('403', 'No such party'); // its private, but let's not tell this to the user
+    if (!utd.public && (!utd.invited || utd.invited.indexOf(this.userId) == -1))
+      throw new Meteor.Error('403', 'No such utd'); // its private, but let's not tell this to the user
 
-    let rsvpIndex = party.rsvps ? party.rsvps.findIndex((rsvp) => rsvp.userId === this.userId) : -1;
+    let rsvpIndex = utd.rsvps ? utd.rsvps.findIndex((rsvp) => rsvp.userId === this.userId) : -1;
 
     if (rsvpIndex !== -1) {
       // update existing rsvp entry
       if (Meteor.isServer) {
         // update the appropriate rsvp entry with $
         Utds2.update(
-          { _id: partyId, 'rsvps.userId': this.userId },
+          { _id: utdId, 'rsvps.userId': this.userId },
           { $set: { 'rsvps.$.response': rsvp } });
       } else {
         // minimongo doesn't yet support $ in modifier. as a temporary
@@ -81,11 +88,11 @@ Meteor.methods({
         let modifier = { $set: {} };
         modifier.$set['rsvps.' + rsvpIndex + '.response'] = rsvp;
 
-        Utds2.update(partyId, modifier);
+        Utds2.update(utdId, modifier);
       }
     } else {
       // add new rsvp entry
-      Utds2.update(partyId,
+      Utds2.update(utdId,
         { $push: { rsvps: { userId: this.userId, response: rsvp } } });
     }
   }
