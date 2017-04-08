@@ -97,15 +97,15 @@ export class Utd2DetailsComponent implements OnInit, OnDestroy {
   }
 
   inviteUtd(user: Meteor.User) {
-    MeteorObservable.call('inviteUtd', this.utd._id, user._id).subscribe(() => {
+    MeteorObservable.call('inviteUtdMethod', this.utd._id, user._id).subscribe(() => {
       alert('User successfully invited to this utd2.');
     }, (error) => {
-      alert(`Failed to invite due to ${error}`);
+      alert(`Failed utd invite to invite due to ${error}`);
     });
   }
 
   replyUtd(rsvp: string) {
-    MeteorObservable.call('replyUtd', this.utd._id, rsvp).subscribe(() => {
+    MeteorObservable.call('replyUtdx', this.utd._id, rsvp).subscribe(() => {
       alert('You successfully replied to this utd2.');
     }, (error) => {
       alert(`Failed to reply due to ${error}`);

@@ -1,4 +1,5 @@
 import {Utds2} from '../collections/utds2.collection';
+import {UtilLog} from '../utlities/UtilLog.ts';
 import {Email} from 'meteor/email';
 import {check} from 'meteor/check';
 import {Meteor} from 'meteor/meteor';
@@ -11,14 +12,9 @@ function getContactEmail(user:Meteor.User):string {
 }
 
 Meteor.methods({
-  inviteUtd: function (utdId:string, userId:string) {
+  inviteUtdMethod: function (utdId:string, userId:string) {
 
-    if (Meteor.isServer) {
-      console.log ('=============================in utd2s.methods.ts isserver');
-    } else {
-      //eval ("alert ('=============================in utd2s.methods.ts must be client');");
-      alert ('=============================in utd2s.methods.ts must be client');
-    }
+    UtilLog.log ('***************   in utd2s.methods.ts ' + (Meteor.isServer ? 'server' : 'client'));
     check(utdId, String);
     check(userId, String);
 
@@ -51,7 +47,7 @@ Meteor.methods({
       }
     }
   },
-  replyUtd: function(utdId: string, rsvp: string) {
+  replyUtdx: function(utdId: string, rsvp: string) {
     check(utdId, String);
     check(rsvp, String);
 
