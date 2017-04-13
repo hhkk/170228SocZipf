@@ -1,5 +1,7 @@
 import {Utds2} from '../collections/utds2.collection';
 import {UtilLog} from '../utlities/UtilLog.ts';
+import {SEVERITYx} from '../utlities/UtilLog.ts';
+import {SEVERITYy} from '../utlities/UtilLog.ts';
 import {Email} from 'meteor/email';
 import {check} from 'meteor/check';
 import {Meteor} from 'meteor/meteor';
@@ -14,7 +16,10 @@ function getContactEmail(user:Meteor.User):string {
 Meteor.methods({
   inviteUtdMethod: function (utdId:string, userId:string) {
 
-    UtilLog.log ('***************   in utd2s.methods.ts ' + (Meteor.isServer ? 'server' : 'client'));
+    let s = '***************   in utd2s.methods.ts ' + (Meteor.isServer ? 'server' : 'client');
+    UtilLog.utdmLog ('SEVERITYx:' + s, SEVERITYx.INFO);
+    UtilLog.utdmLog ('SEVERITYx:' + s, SEVERITYx.INFO);
+    UtilLog.utdmLog ('SEVERITYy' + s, SEVERITYy.INFO);
     check(utdId, String);
     check(userId, String);
 

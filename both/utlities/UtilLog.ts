@@ -1,11 +1,53 @@
-    /**
+/**
  * Created by Owner on 10/30/2016.
  */
 
+    // export const enum SEV {
+    //     WARN,
+    //     ERROR,
+    //     INFO,
+    //     DEBUG
+    // }
 
+// module Severity {
+//
+//     enum Severity2 {
+//         INFO,
+//         DEBUG,
+//         WARN,
+//         ERROR,
+//         FATAL
+//     }
+//
+// //    export {Severity2} ;
+//
+//     //export interface logger {
+// //        log(s: String, sev:Severity2) void;
+// //    }
+//
+// }
+
+export class SEVERITYx {
+    static INFO: number;
+    static ERROR: number;
+    static WARNING: number;
+    static DEBUG: number;
+
+    constructor() {};
+}
+export class SEVERITYy {
+    static INFO: number;
+    static ERROR: number;
+    static WARNING: number;
+    static DEBUG: number;
+
+    constructor() {};
+}
 export class UtilLog {
 
-    public static logError(e, alertbool:boolean):string {
+
+
+    public static logErrorUtd(e, alertbool:boolean, sev:SEVERITYx):string {
         let r = '';
         if (e.message) {
             r += e.message;
@@ -32,16 +74,20 @@ export class UtilLog {
     //
     //
 
-    // static class SEVERITY = {
+
+    // works: public static SEV2 = {
     //     DEBUG : {name: "DEBUG", cd: "D"},
     //     INFO  : {name: "INFO", cd: "W"},
     //     WARN  : {name: "WARN", cd: "I"},
     //     ERROR : {name: "ERROR", cd: "E"}
     // };
 
-        // works: public static log(s):void {
-        public static log(s):void {
-            s = 'UTILLOG:' + s ;
+    // works: public static log(s):void {
+    public static utdmLog(s:String, severity:SEVERITYx):void {
+        s = 'UTILLOG:sev:' + severity + ':' + s;
+
+        console.log(severity.constructor.name);
+        //console.log(severity.????);
         if (Meteor.isServer) {
             console.log (s);
         } else {
