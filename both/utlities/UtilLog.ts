@@ -86,7 +86,7 @@ export class UtilLog {
     public static utdmLog(s:String, severity:SEVERITYx):void {
         s = 'UTILLOG:sev:' + severity + ':' + s;
 
-        console.log(severity.constructor.name);
+        //console.log(severity.constructor.name);
         //console.log(severity.????);
         if (Meteor.isServer) {
             console.log (s);

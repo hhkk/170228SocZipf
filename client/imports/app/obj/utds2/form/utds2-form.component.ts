@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Utds2 } from '../../../../../both/collections/utds2.collection';
+import { Utds2 } from '../../../../../../both/collections/utds2.collection';
 import { InjectUser } from "angular2-meteor-accounts-ui";
 import template from './utds2-form.component.html';
 import style from './utds2-form.component.scss';

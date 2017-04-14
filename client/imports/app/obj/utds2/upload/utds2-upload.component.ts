@@ -3,11 +3,11 @@ import {Component, OnInit, EventEmitter, Output} from '@angular/core';
 import template from './utdsxx2-upload.component.html';
 import style from './utdsxx2-upload.component.scss';
 
-import { upload } from '../../../../../both/methods/images.methods';
+import { upload } from '../../../../../../both/methods/images.methods';
 import {Subject, Subscription, Observable} from "rxjs";
 import {MeteorObservable} from "meteor-rxjs";
-import {Thumb} from "../../../../../both/models/image.model";
-import {Thumbs} from "../../../../../both/collections/images.collection";
+import {Thumb} from "../../../../../../both/models/image.model";
+import {Thumbs} from "../../../../../../both/collections/images.collection";
 
 @Component({
   selector: 'utdsxx2-upload',

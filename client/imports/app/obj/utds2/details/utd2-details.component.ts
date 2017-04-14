@@ -9,10 +9,10 @@ import { MouseEvent } from "angular2-google-maps/core";
 
 import 'rxjs/add/operator/map';
 
-import { Utds2 } from '../../../../../both/collections/utds2.collection';
-import { Utd2 } from '../../../../../both/models/utd2.model';
-import { Users } from '../../../../../both/collections/users.collection';
-import { User } from '../../../../../both/models/user.model';
+import { Utds2 } from '../../../../../../both/collections/utds2.collection';
+import { Utd2 } from '../../../../../../both/models/utd2.model';
+import { Users } from '../../../../../../both/collections/users.collection';
+import { User } from '../../../../../../both/models/user.model';
 
 import template from './utd2-details.component.html';
 import style from './utd2-details.component.scss';
