@@ -1,3 +1,6 @@
+//import { UtilLog } from '../../../../../../both/utlities/UtilLog';
+import { UtdEnum } from './UtdEnum';
+
 /**
  * Created by Owner on 10/30/2016.
  */
@@ -26,41 +29,41 @@
 // //    }
 //
 // }
-
-export class SEVERITYx {
-    static INFO: number;
-    static ERROR: number;
-    static WARNING: number;
-    static DEBUG: number;
-
-    constructor() {};
-}
-export class SEVERITYy {
-    static INFO: number;
-    static ERROR: number;
-    static WARNING: number;
-    static DEBUG: number;
-
-    constructor() {};
-}
+//
+// public static class SEVERITYx {
+//     static INFO: number;
+//     static ERROR: number;
+//     static WARNING: number;
+//     static DEBUG: number;
+//
+//     constructor() {};
+// }
+// export static class SEVERITYy {
+//     static INFO: number;
+//     static ERROR: number;
+//     static WARNING: number;
+//     static DEBUG: number;
+//
+//     constructor() {};
+// }
 export class UtilLog {
 
 
 
-    public static logErrorUtd(e, alertbool:boolean, sev:SEVERITYx):string {
-        let r = '';
-        if (e.message) {
-            r += e.message;
-        }
-        if (e.stack) {
-            r += ' | stack: ' + e.stack;
-        }
-        if (alertbool)
-            alert ('hbkerror:' + r);
-        console.log('hbkerror:' + r);
-        return r;
-    }
-
+    // public static logErrorUtd(e, alertbool:boolean, sev:SEVERITYx):string {
+    //     let r = '';
+    //     if (e.message) {
+    //         r += e.message;
+    //     }
+    //     if (e.stack) {
+    //         r += ' | stack: ' + e.stack;
+    //     }
+    //     if (alertbool)
+    //         alert ('hbkerror:' + r);
+    //     console.log('hbkerror:' + r);
+    //     return r;
+    // }
+    //
 
     // export module b
     // {
@@ -83,8 +86,8 @@ export class UtilLog {
     // };
 
     // works: public static log(s):void {
-    public static utdmLog(s:String, severity:SEVERITYx):void {
-        s = 'UTILLOG:sev:' + severity + ':' + s;
+    public static utdmLog(s:String, severity:UtdEnum.Severity):void {
+        s = 'UTILLOG:sev:' + severity + ', s:' + s;
 
         //console.log(severity.constructor.name);
         //console.log(severity.????);

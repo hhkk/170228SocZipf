@@ -1,4 +1,4 @@
-import {Utds2} from '../collections/utds2.collection';
+import {Utds3} from '../collections/utds3.collection';
 import {Email} from 'meteor/email';
 import {check} from 'meteor/check';
 import {Meteor} from 'meteor/meteor';
@@ -11,25 +11,25 @@ function getContactEmail(user:Meteor.User):string {
 }
 
 Meteor.methods({
-  inviteUtdMethod: function (utdId:string, userId:string) {
+  inviteUtd3Method: function (utdId:string, userId:string) {
 
-    let s = '***************   in utd2s.methods.ts ' + (Meteor.isServer ? 'server' : 'client');
+    //let s = '***************   in utd3s.methods.ts ' + (Meteor.isServer ? 'server' : 'client');
     check(utdId, String);
     check(userId, String);
 
-    let utd2 = Utds2.collection.findOne(utdId);
+    let utd3 = Utds3.collection.findOne(utdId);
 
-    if (!utd2)
-      throw new Meteor.Error('404', 'No such utd2!');
+    if (!utd3)
+      throw new Meteor.Error('404', 'No such utd3!');
 
-    if (utd2.public)
-      throw new Meteor.Error('400', 'That utd2 is public. No need to invite people.');
+    if (utd3.public)
+      throw new Meteor.Error('400', 'That utd3 is public. No need to invite people.');
 
-    if (utd2.owner !== this.userId)
+    if (utd3.owner !== this.userId)
       throw new Meteor.Error('403', 'No permissions!');
 
-    if (userId !== utd2.owner && (utd2.invited || []).indexOf(userId) == -1) {
-      Utds2.collection.update(utdId, {$addToSet: {invited: userId}});
+    if (userId !== utd3.owner && (utd3.invited || []).indexOf(userId) == -1) {
+      Utds3.collection.update(utdId, {$addToSet: {invited: userId}});
 
       let from = getContactEmail(Meteor.users.findOne(this.userId));
       let to = getContactEmail(Meteor.users.findOne(userId));
@@ -39,14 +39,14 @@ Meteor.methods({
           from: 'noreply@socially.com',
           to: to,
           replyTo: from || undefined,
-          subject: 'UTD: ' + utd2.name,
-          text: `Hi, I just invited you to ${utd2.name} on Socially.
+          subject: 'UTD: ' + utd3.name,
+          text: `Hi, I just invited you to ${utd3.name} on Socially.
                         \n\nCome check it out: ${Meteor.absoluteUrl()}\n`
         });
       }
     }
   },
-  replyUtdx: function(utdId: string, rsvp: string) {
+  replyUtd3x: function(utdId: string, rsvp: string) {
     check(utdId, String);
     check(rsvp, String);
 
@@ -56,7 +56,7 @@ Meteor.methods({
     if (['yes', 'no', 'maybe'].indexOf(rsvp) === -1)
       throw new Meteor.Error('400', 'Invalid RSVP');
 
-    let utd = Utds2.findOne({ _id: utdId });
+    let utd = Utds3.findOne({ _id: utdId });
 
     if (!utd)
       throw new Meteor.Error('404', 'No such utd');
@@ -73,7 +73,7 @@ Meteor.methods({
       // update existing rsvp entry
       if (Meteor.isServer) {
         // update the appropriate rsvp entry with $
-        Utds2.update(
+        Utds3.update(
           { _id: utdId, 'rsvps.userId': this.userId },
           { $set: { 'rsvps.$.response': rsvp } });
       } else {
@@ -83,11 +83,11 @@ Meteor.methods({
         let modifier = { $set: {} };
         modifier.$set['rsvps.' + rsvpIndex + '.response'] = rsvp;
 
-        Utds2.update(utdId, modifier);
+        Utds3.update(utdId, modifier);
       }
     } else {
       // add new rsvp entry
-      Utds2.update(utdId,
+      Utds3.update(utdId,
         { $push: { rsvps: { userId: this.userId, response: rsvp } } });
     }
   }

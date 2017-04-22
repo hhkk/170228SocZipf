@@ -1,20 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Utds2 } from '../../../../../../both/collections/utds2.collection';
-import { InjectUser } from "angular2-meteor-accounts-ui";
-import template from './utds2-form.component.html';
-import style from './utds2-form.component.scss';
+import { Utds3 } from '../../../../../../both/collections/utds3.collection';
+//import {UtilLog} from '../../../../../../both/utlities/UtilLog';
 import { UtilLog } from '../../../../../../both/utlities/UtilLog';
 import { UtdEnum } from '../../../../../../both/utlities/UtdEnum';
 
+import { InjectUser } from "angular2-meteor-accounts-ui";
+import template from './utds2-form.component.html';
+import style from './utds2-form.component.scss';
 
 @Component({
-  selector: 'utds-formx26',
+  selector: 'utds-formx263',
   template,
   styles: [ style ]
 })
 @InjectUser("user")
-export class Utds2FormComponent implements OnInit {
+export class Utds3FormComponent implements OnInit {
   addForm: FormGroup;
   newUtdPosition: {lat:number, lng: number} = {lat: 37.4292, lng: -122.1381};
   images: string[] = [];
@@ -37,9 +38,8 @@ export class Utds2FormComponent implements OnInit {
   }
 
   addUtd(): void {
-    UtilLog.utdmLog('in utds2 utdsxx2-form.component.ts', UtdEnum.Severity.INFO);
-
-
+    //UtilLog.utdmLog('in utds3 utdsxx2-form.component.ts', UtilLog.SEVERITYy.INFO);
+    UtilLog.utdmLog('in utds3 utdsxx2-form.component.ts', UtdEnum.Severity.INFO);
     if (!Meteor.userId()) {
       alert('Please log in to add a utd');
       return;
@@ -49,9 +49,9 @@ export class Utds2FormComponent implements OnInit {
       let i;
       for (i = 0; i < 1; i++) {
         if (this.addForm.valid) {
-          alert('pre save in obj utds2');
+          alert('pre save in obj utds3');
           try {
-            Utds2.insert({
+            Utds3.insert({
               name: this.addForm.value.name + '.' + i,
               description: this.addForm.value.description,
               location: {
