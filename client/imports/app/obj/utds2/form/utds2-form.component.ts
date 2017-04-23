@@ -37,7 +37,7 @@ export class Utds2FormComponent implements OnInit {
   }
 
   addUtd(): void {
-    UtilLog.utdmLog('in utds2 utdsxx2-form.component.ts', UtdEnum.Severity.INFO);
+    UtilLog.utdmLog('in obj/utds2/form/utds2-form.component.ts addUtd aaa    Take the lawutds2 utdsxx2-form.component.ts', UtdEnum.Severity.INFO);
 
 
     if (!Meteor.userId()) {
@@ -49,7 +49,7 @@ export class Utds2FormComponent implements OnInit {
       let i;
       for (i = 0; i < 1; i++) {
         if (this.addForm.valid) {
-          alert('pre save in obj utds2');
+          alert('pre save in obj2 obj utds2');
           try {
             Utds2.insert({
               name: this.addForm.value.name + '.' + i,

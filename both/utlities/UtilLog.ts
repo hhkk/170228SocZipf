@@ -95,7 +95,7 @@ export class UtilLog {
             console.log (s);
         } else {
             //eval ("alert ('============================= eval in utd2s.methods.ts must be client');");
-            alert (s);
+            alert ('client side log [' + s + ']');
         }
     }
 }
